@@ -6,7 +6,7 @@ import (
 )
 
 // BasePlugin provides default implementations for common plugin interfaces.
-// Plugins embed this struct and use ServePlugin() which handles initialization automatically.
+// Plugins embed this struct and use ServeGRPCPlugin() which handles initialization automatically.
 //
 // Example usage:
 //
@@ -18,7 +18,7 @@ import (
 //	}
 //
 //	func main() {
-//	    pluginapi.ServePlugin(&myTool{}, configYAML)
+//	    pluginapi.ServeGRPCPlugin(&myTool{}, configYAML)
 //	}
 type BasePlugin struct {
 	version         string
@@ -34,7 +34,7 @@ type BasePlugin struct {
 }
 
 // newBasePlugin creates a new base plugin with version and compatibility info.
-// This is an internal function used by ServePlugin.
+// This is an internal function used by ServeGRPCPlugin.
 //
 // Parameters:
 //   - name: Plugin name (e.g., "weather", "math")

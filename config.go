@@ -102,7 +102,7 @@ type PluginConfig struct {
 }
 
 // readPluginConfig parses and validates plugin configuration from embedded YAML.
-// This is an internal function used by ServePlugin.
+// This is an internal function used by ServeGRPCPlugin.
 // Returns an error if the configuration is invalid.
 func readPluginConfig(embeddedYAML string) (PluginConfig, error) {
 	var config PluginConfig

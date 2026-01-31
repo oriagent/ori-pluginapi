@@ -365,7 +365,7 @@ func serveDashboardPage(t *{{.PluginNamePascal}}Tool, query map[string]string) (
 // ============================================================================
 
 func main() {
-	pluginapi.ServePlugin(&{{.PluginNamePascal}}Tool{}, configYAML)
+	pluginapi.ServeGRPCPlugin(&{{.PluginNamePascal}}Tool{}, configYAML)
 }
 `
 
@@ -503,7 +503,7 @@ make clean
 ## Architecture
 
 ### Plugin Type
-RPC-based plugin using HashiCorp go-plugin with gRPC.
+Direct gRPC plugin (no go-plugin handshake).
 
 ### Core Files
 - ` + "`main.go`" + ` - Plugin entry point and operation handlers

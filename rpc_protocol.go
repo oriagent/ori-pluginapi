@@ -4,30 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-
-	"github.com/hashicorp/go-plugin"
-	"google.golang.org/grpc"
 )
-
-// ToolRPCPlugin is the implementation of plugin.Plugin so we can serve/consume this
-type ToolRPCPlugin struct {
-	plugin.Plugin
-	// Impl is the concrete implementation (only set for plugin-side)
-	Impl PluginTool
-}
-
-// GRPCServer registers this plugin for serving over gRPC
-func (p *ToolRPCPlugin) GRPCServer(broker *plugin.GRPCBroker, s *grpc.Server) error {
-	// The actual server implementation is in internal/pluginrpc package
-	// This will be imported by plugins that use this
-	RegisterToolServiceServer(s, &grpcServer{Impl: p.Impl})
-	return nil
-}
-
-// GRPCClient returns the client implementation
-func (p *ToolRPCPlugin) GRPCClient(ctx context.Context, broker *plugin.GRPCBroker, c *grpc.ClientConn) (interface{}, error) {
-	return &grpcClient{client: NewToolServiceClient(c)}, nil
-}
 
 // grpcServer is a local wrapper for the server implementation
 type grpcServer struct {

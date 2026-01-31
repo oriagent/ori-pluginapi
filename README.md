@@ -45,7 +45,7 @@ func (t *MyPlugin) Call(ctx context.Context, args string) (string, error) {
 }
 
 func main() {
-	pluginapi.ServePlugin(&MyPlugin{}, configYAML)
+	pluginapi.ServeGRPCPlugin(&MyPlugin{}, configYAML)
 }
 ```
 
@@ -86,7 +86,7 @@ go build -o my-plugin .
 ## Features
 
 - **BasePlugin**: Default implementations for common interfaces
-- **ServePlugin**: One-line plugin server bootstrap
+- **ServeGRPCPlugin**: One-line plugin server bootstrap (direct gRPC on `ORI_PLUGIN_GRPC_PORT`)
 - **Settings API**: Persistent key-value storage per agent
 - **Structured Results**: Tables, lists, cards for rich UI rendering
 - **Web Pages**: Serve custom HTML dashboards
